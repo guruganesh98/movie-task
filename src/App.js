@@ -1,4 +1,5 @@
 import "./App.css";
+import {useState} from "react";
 
 export default function App() {
   const films = [
@@ -58,14 +59,36 @@ export default function App() {
   return (
     <div>
       {films.map(({ name, url, rating, genre, synopsis, awards}) => (
-        <Entertainment movie={name} poster={url} imdb={rating} theme={genre} summary={synopsis} success={awards}/>
+        <Entertainment key={name} movie={name} poster={url} imdb={rating} theme={genre} summary={synopsis} success={awards}/>
       ))}
       ;
     </div>
   );
 }
 
+function Counter(){
+   const [like, setLike] = useState(0);
+   const [disLike, setDisLike] = useState(0);
+  //  const [toggle, setToggle] = useState(false)
+
+   return(
+     <div>
+       <button onClick={() => setLike(like + 1)}>{like}Like</button>
+       <button onClick={() => setDisLike(disLike + 1)}>{disLike} Dislikes</button>
+       {/* {toggle ? {summary} : null}
+      <button onClick={()=> setToggle(!toggle)}>
+        Press me
+      </button> */}
+      </div>
+   )
+}
+
 function Entertainment({movie, poster, imdb, theme, summary, success}) {
+  const styles = { color: imdb >= 7.5 ?  "green": "red"};
+  const [toggle, setToggle] = useState(false)
+  // const [like, setLike] = useState(0);
+  // const [disLike, setDisLike] = useState(0);
+
   return (
     <div className="movies">
       <div className="eachMovie">
@@ -73,14 +96,18 @@ function Entertainment({movie, poster, imdb, theme, summary, success}) {
       <div className="info">
       <h2>{movie}</h2>
       <p className="type">{theme}</p>
-      <div className="ratings">
+      <div style={styles} className="ratings">
         <img src="https://m.media-amazon.com/images/G/01/imdb/images/social/imdb_logo.png" alt="imdb" /><p>{imdb}</p><img src="https://cdn1.iconfinder.com/data/icons/hand-signs-emotions-bright-flat-design/128/star-favorite-rating-important-512.png" alt="star" />
 
       </div>
       <p className="awards">{success}</p>
-      <p>{summary}</p>
+      {toggle ? <p>{summary}</p> : null}
+      <button onClick={()=> setToggle(!toggle)}>Press me</button>
       </div>
+      {/* <button onClick={() => setLike(like + 1)}>{like} Likes</button>
+      <button onClick={() => setDisLike(disLike + 1)}>{disLike} Dislikes</button> */}
       </div>
+      <Counter />
     </div>
   );
 }
