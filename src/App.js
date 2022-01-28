@@ -1,8 +1,12 @@
 import "./App.css";
 import {useState} from "react";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
+
 
 export default function App() {
-  const films = [
+  const [films, setFilms] = useState([
     {
       name: "DARK KNIGHT",
       url: "https://images.saymedia-content.com/.image/t_share/MTc0Mzk0MTExMDQ5MDgyMjE2/should-i-watch-the-dark-knight.jpg",
@@ -48,37 +52,78 @@ export default function App() {
     },
 
     {
-      name: "BATMAN V SUPERMAN",
-      url: "http://posterposse.com/wp-content/uploads/2016/03/Batman-v-Superman-Dawn-of-Justice-poster.jpg",
+      name: "BATMAN V SUPERMAN",url: "http://posterposse.com/wp-content/uploads/2016/03/Batman-v-Superman-Dawn-of-Justice-poster.jpg",
       rating: "6.4",
       awards: "14 wins and 33 nominations",
       genre: "2016 ‧ Action/Adventure",
       synopsis:"It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel"
     }
-  ];
+  ]);
+
+  const [name, setName]= useState([]);
+  const [url, setUrl]= useState([]);
+  const [rating, setRating]= useState([]);
+  const [awards, setAwards]= useState([]);
+  const [genre, setGenre]= useState([]);
+  const [synopsis, setSynopsis]= useState([]);
+
   return (
     <div>
       {films.map(({ name, url, rating, genre, synopsis, awards}) => (
         <Entertainment key={name} movie={name} poster={url} imdb={rating} theme={genre} summary={synopsis} success={awards}/>
       ))}
-      ;
+      <div className="movieDetails">
+      <TextField className="movieInput"
+  label="Name"
+  focused  onChange={(event)=> setName(event.target.value)}
+/>
+      <TextField className="movieInput"
+  label="URL"
+  focused  onChange={(event)=> setUrl(event.target.value)}
+/>
+      <TextField className="movieInput"
+  label="Rating"
+  focused onChange={(event)=> setRating(event.target.value)}
+/>
+      <TextField className="movieInput"
+  label="Awards"
+  focused  onChange={(event)=> setAwards(event.target.value)}
+/>
+      <TextField className="movieInput"
+  label="Genre"
+  focused onChange={(event)=> setGenre(event.target.value)}
+/>
+      <TextField className="movieInput"
+  label="Synopsis"
+  focused onChange={(event)=> setSynopsis(event.target.value)}
+/>
+</div>
+<div className="addButton">
+<Button variant="contained" color="success" onClick={()=>{
+        const addNewMovie={
+          name: name,
+          url: url,
+          rating: rating,
+          awards: awards,
+          genre: genre,
+          synopsis: synopsis
+        };    setFilms([...films, addNewMovie])   }}>Add Movie</Button>
+        </div>
     </div>
   );
+
+
 }
 
 function Counter(){
    const [like, setLike] = useState(0);
    const [disLike, setDisLike] = useState(0);
-  //  const [toggle, setToggle] = useState(false)
 
    return(
      <div>
-       <button onClick={() => setLike(like + 1)}>{like}Like</button>
-       <button onClick={() => setDisLike(disLike + 1)}>{disLike} Dislikes</button>
-       {/* {toggle ? {summary} : null}
-      <button onClick={()=> setToggle(!toggle)}>
-        Press me
-      </button> */}
+       <Button onClick={() => setLike(like + 1)}>{like}Like</Button>
+       <Button onClick={() => setDisLike(disLike + 1)}>{disLike} Dislikes</Button>
+
       </div>
    )
 }
@@ -86,8 +131,6 @@ function Counter(){
 function Entertainment({movie, poster, imdb, theme, summary, success}) {
   const styles = { color: imdb >= 7.5 ?  "green": "red"};
   const [toggle, setToggle] = useState(false)
-  // const [like, setLike] = useState(0);
-  // const [disLike, setDisLike] = useState(0);
 
   return (
     <div className="movies">
@@ -102,10 +145,9 @@ function Entertainment({movie, poster, imdb, theme, summary, success}) {
       </div>
       <p className="awards">{success}</p>
       {toggle ? <p>{summary}</p> : null}
-      <button onClick={()=> setToggle(!toggle)}>Press me</button>
+      <Button onClick={()=> setToggle(!toggle)} variant="contained">Press me</Button>
+
       </div>
-      {/* <button onClick={() => setLike(like + 1)}>{like} Likes</button>
-      <button onClick={() => setDisLike(disLike + 1)}>{disLike} Dislikes</button> */}
       </div>
       <Counter />
     </div>

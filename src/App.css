@@ -1,7 +1,6 @@
 body{
   display: flex;
   justify-content: center;
-  background-color: black;
 }
 
 
@@ -63,4 +62,13 @@ border-radius: 20px;
   border-radius: 20px;
   width: 100px;
   height: 25px;
+}
+
+.addButton{
+  margin-bottom: 10px;
+  margin-left: 72rem;
+}
+
+.movieDetails{
+  margin-bottom: 10px;
 }
