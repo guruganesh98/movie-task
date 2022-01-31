@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import { Counter } from "./Counter";
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 export function Entertainment({ movie, poster, imdb, theme, summary, success }) {
   const styles = { color: imdb >= 7.5 ? "green" : "red" };
@@ -19,8 +21,7 @@ export function Entertainment({ movie, poster, imdb, theme, summary, success }) 
           </div>
           <p className="awards">{success}</p>
           {toggle ? <p>{summary}</p> : null}
-          <Button onClick={() => setToggle(!toggle)} variant="contained">Press me</Button>
-
+          <Button onClick={()=>setToggle(!toggle)} variant="contained"> {toggle ? <ExpandLessIcon/> : <ExpandMoreIcon/>}</Button>
         </div>
       </div>
       <Counter />
