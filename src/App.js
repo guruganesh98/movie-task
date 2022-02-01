@@ -3,10 +3,14 @@ import {useState} from "react";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Entertainment } from "./Entertainment";
+import { Switch, Route, Link } from "react-router-dom";
+import WelcomePage from "./WelcomePage";
+import AddColor from "./Colors";
 
 
 
-export default function App() {
+
+function App() {
   const [films, setFilms] = useState([
     {
       name: "DARK KNIGHT",
@@ -70,49 +74,76 @@ export default function App() {
 
   return (
     <div>
-      {films.map(({ name, url, rating, genre, synopsis, awards}) => (
-        <Entertainment key={name} movie={name} poster={url} imdb={rating} theme={genre} summary={synopsis} success={awards}/>
-      ))}
-      <div className="movieDetails">
-      <TextField className="movieInput"
-  label="Name"
-  focused  onChange={(event)=> setName(event.target.value)}
+      <ul>
+        <li>
+          <Link to="/home">Welcome Page</Link>
+        </li>
+        <li>
+          <Link to="/app">Movies</Link>
+        </li>
+        <li>
+          <Link to="/colors">Add Colors</Link>
+        </li>
+        </ul>
+     
+    <Switch>
+        <Route path="/home">
+          <WelcomePage />
+        </Route>
+        <Route path="/colors">
+        <AddColor />
+          </Route>
+        <Route path="/app">
+        <div>
+
+     
+{films.map(({ name, url, rating, genre, synopsis, awards}) => (
+  <Entertainment key={name} movie={name} poster={url} imdb={rating} theme={genre} summary={synopsis} success={awards}/>
+))}
+<div className="movieDetails">
+<TextField className="movieInput"
+label="Name"
+focused  onChange={(event)=> setName(event.target.value)}
 />
-      <TextField className="movieInput"
-  label="URL"
-  focused  onChange={(event)=> setUrl(event.target.value)}
+<TextField className="movieInput"
+label="URL"
+focused  onChange={(event)=> setUrl(event.target.value)}
 />
-      <TextField className="movieInput"
-  label="Rating"
-  focused onChange={(event)=> setRating(event.target.value)}
+<TextField className="movieInput"
+label="Rating"
+focused onChange={(event)=> setRating(event.target.value)}
 />
-      <TextField className="movieInput"
-  label="Awards"
-  focused  onChange={(event)=> setAwards(event.target.value)}
+<TextField className="movieInput"
+label="Awards"
+focused  onChange={(event)=> setAwards(event.target.value)}
 />
-      <TextField className="movieInput"
-  label="Genre"
-  focused onChange={(event)=> setGenre(event.target.value)}
+<TextField className="movieInput"
+label="Genre"
+focused onChange={(event)=> setGenre(event.target.value)}
 />
-      <TextField className="movieInput"
-  label="Synopsis"
-  focused onChange={(event)=> setSynopsis(event.target.value)}
+<TextField className="movieInput"
+label="Synopsis"
+focused onChange={(event)=> setSynopsis(event.target.value)}
 />
 </div>
 <div className="addButton">
 <Button variant="contained" color="success" onClick={()=>{
-        const addNewMovie={
-          name: name,
-          url: url,
-          rating: rating,
-          awards: awards,
-          genre: genre,
-          synopsis: synopsis
-        };    setFilms([...films, addNewMovie])   }}>Add Movie</Button>
+  const addNewMovie={
+    name: name,
+    url: url,
+    rating: rating,
+    awards: awards,
+    genre: genre,
+    synopsis: synopsis
+  };    setFilms([...films, addNewMovie])   }}>Add Movie</Button>
+          </div>
+        </div>        
+        </Route>
+        </Switch>
         </div>
-    </div>
   );
 
 
 }
 
+export default App

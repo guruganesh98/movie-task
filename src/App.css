@@ -72,3 +72,8 @@ border-radius: 20px;
 .movieDetails{
   margin: 1rem 0 1rem 0;
 }
+
+.greetings{
+  background-color: darkorange;
+  color: black;
+}
