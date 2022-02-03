@@ -1,18 +1,21 @@
+import "./App.css";
 import { useState } from "react";
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
-export default function AddColor() {
+
+const AddColor = () => {
   const [colors, setColors] = useState();
   const styles = { background: colors };
   const [colorsList, setColorsList] = useState([]);
   return (
     <div>
-      <TextareaAutosize
+      <TextField
         aria-label={colors}
         placeholder="Enter a color"
         style={styles}
         onChange={(event) => setColors(event.target.value)} />
-      <button onClick={() => setColorsList([...colorsList, colors])}>AddColors</button>
+      <Button className="colorButton" onClick={() => setColorsList([...colorsList, colors])}>AddColors</Button>
       {colorsList.map((clr) => (<ColorBox cool={clr} />))}
 
     </div>
@@ -27,3 +30,5 @@ function ColorBox({ cool }) {
   };
   return <div style={styles}></div>;
 }
+
+export default AddColor

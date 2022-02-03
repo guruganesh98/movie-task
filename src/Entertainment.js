@@ -3,14 +3,19 @@ import Button from '@mui/material/Button';
 import { Counter } from "./Counter";
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
-export function Entertainment({ movie, poster, imdb, theme, summary, success }) {
+
+
+
+export function Entertainment({ movie, poster, imdb, theme, summary, success, deleteButton}) {
   const styles = { color: imdb >= 7.5 ? "green" : "red" };
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className="movies">
-      <div className="eachMovie">
+    <Card className="movies">
+      <CardContent className="eachMovie">
         <img src={poster} className="moviePoster" alt="pics" />
         <div className="info">
           <h2>{movie}</h2>
@@ -20,11 +25,15 @@ export function Entertainment({ movie, poster, imdb, theme, summary, success }) 
 
           </div>
           <p className="awards">{success}</p>
-          {toggle ? <p>{summary}</p> : null}
+          <div className="buttons">
           <Button onClick={()=>setToggle(!toggle)} variant="contained"> {toggle ? <ExpandLessIcon/> : <ExpandMoreIcon/>}</Button>
+          <Counter />
+          {deleteButton}</div>
+          {toggle ? <p className="movieSummary"><i>{summary}</i></p> : null}
         </div>
-      </div>
-      <Counter />
-    </div>
+      </CardContent>
+    </Card>
   );
 }
+
+export default Entertainment

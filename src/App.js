@@ -1,17 +1,18 @@
 import "./App.css";
 import {useState} from "react";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import { Entertainment } from "./Entertainment";
 import { Switch, Route, Link } from "react-router-dom";
 import WelcomePage from "./WelcomePage";
 import AddColor from "./Colors";
-
-
+import AddMovies from "./AddMovies";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Error from "./Error"
 
 
 function App() {
-  const [films, setFilms] = useState([
+
+  const MyMovieList =[
     {
       name: "DARK KNIGHT",
       url: "https://images.saymedia-content.com/.image/t_share/MTc0Mzk0MTExMDQ5MDgyMjE2/should-i-watch-the-dark-knight.jpg",
@@ -63,82 +64,66 @@ function App() {
       genre: "2016 ‧ Action/Adventure",
       synopsis:"It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel"
     }
-  ]);
-
-  const [name, setName]= useState([]);
-  const [url, setUrl]= useState([]);
-  const [rating, setRating]= useState([]);
-  const [awards, setAwards]= useState([]);
-  const [genre, setGenre]= useState([]);
-  const [synopsis, setSynopsis]= useState([]);
-
+  ]
+  const [films, setFilms] = useState(MyMovieList);
   return (
     <div>
+      <div>
       <ul>
         <li>
-          <Link to="/home">Welcome Page</Link>
+          <Link to="/">Welcome Page</Link>
         </li>
         <li>
-          <Link to="/app">Movies</Link>
+          <Link to="/movies">Movies</Link>
         </li>
         <li>
           <Link to="/colors">Add Colors</Link>
         </li>
+        <li>
+          <Link to="/addmovie">Add Movie</Link>
+        </li>
         </ul>
+        </div>
      
     <Switch>
-        <Route path="/home">
+        <Route exact path="/">
           <WelcomePage />
         </Route>
         <Route path="/colors">
         <AddColor />
           </Route>
-        <Route path="/app">
+        <Route path="/addmovie">
+          <AddMovies films={films} setFilms={setFilms} />
+        </Route>
+        <Route path="/movies">
         <div>
 
      
-{films.map(({ name, url, rating, genre, synopsis, awards}) => (
-  <Entertainment key={name} movie={name} poster={url} imdb={rating} theme={genre} summary={synopsis} success={awards}/>
-))}
-<div className="movieDetails">
-<TextField className="movieInput"
-label="Name"
-focused  onChange={(event)=> setName(event.target.value)}
-/>
-<TextField className="movieInput"
-label="URL"
-focused  onChange={(event)=> setUrl(event.target.value)}
-/>
-<TextField className="movieInput"
-label="Rating"
-focused onChange={(event)=> setRating(event.target.value)}
-/>
-<TextField className="movieInput"
-label="Awards"
-focused  onChange={(event)=> setAwards(event.target.value)}
-/>
-<TextField className="movieInput"
-label="Genre"
-focused onChange={(event)=> setGenre(event.target.value)}
-/>
-<TextField className="movieInput"
-label="Synopsis"
-focused onChange={(event)=> setSynopsis(event.target.value)}
-/>
-</div>
-<div className="addButton">
-<Button variant="contained" color="success" onClick={()=>{
-  const addNewMovie={
-    name: name,
-    url: url,
-    rating: rating,
-    awards: awards,
-    genre: genre,
-    synopsis: synopsis
-  };    setFilms([...films, addNewMovie])   }}>Add Movie</Button>
-          </div>
+            {films.map(({ name, url, rating, genre, synopsis, awards},index) => (
+              <Entertainment 
+              key={name}
+              movie={name}
+              poster={url}
+              imdb={rating}
+              theme={genre} 
+              summary={synopsis} 
+              success={awards}
+              deleteButton={
+                <IconButton aria-label="delete"
+                onClick={()=> {
+                  const deleteMovie=[...films];
+                  deleteMovie.splice(index, 1);
+                  setFilms(deleteMovie)
+                }}>        <DeleteIcon />
+                </IconButton>
+              } />
+            ))}
+
         </div>        
         </Route>
+        <Route exact path="**">
+            <Error />
+          </Route>
         </Switch>
         </div>
   );

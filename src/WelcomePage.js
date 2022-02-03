@@ -4,7 +4,7 @@ import "./App.css";
 const WelcomePage= () => {
 
     return(
-        <h1 className="greetings">Welcome to the Movie Page</h1>
+        <h1 className="greetings"><p className="welcome">HI....THERE</p></h1>
     )
 }
 export default WelcomePage
