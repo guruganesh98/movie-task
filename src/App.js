@@ -8,6 +8,8 @@ import AddMovies from "./AddMovies";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Error from "./Error"
+import AboutMovie from "./AboutMovie"
+
 
 
 function App() {
@@ -19,7 +21,8 @@ function App() {
       rating: "9.0",
       awards: "2 OSCARS, 159 wins and 163 nominations",
       genre: "2008 ‧ Action/Adventure",
-      synopsis:"With the help of allies Lt. Jim Gordon (Gary Oldman) and DA Harvey Dent (Aaron Eckhart), Batman (Christian Bale) has been able to keep a tight lid on crime in Gotham City. But when a vile young criminal calling himself the Joker (Heath Ledger) suddenly throws the town into chaos, the caped Crusader begins to tread a fine line between heroism and vigilantism."
+      synopsis:"With the help of allies Lt. Jim Gordon (Gary Oldman) and DA Harvey Dent (Aaron Eckhart), Batman (Christian Bale) has been able to keep a tight lid on crime in Gotham City. But when a vile young criminal calling himself the Joker (Heath Ledger) suddenly throws the town into chaos, the caped Crusader begins to tread a fine line between heroism and vigilantism.",
+      trailer: "https://www.youtube.com/embed/LDG9bisJEaI"
     },
     
     {
@@ -28,7 +31,8 @@ function App() {
       rating: "8.8",
       awards: "4 OSCARS, 157 wins and 220 nominations",
       genre: "2010 ‧ Action/Sci-fi",
-      synopsis:"Dom Cobb (Leonardo DiCaprio) is a thief with the rare ability to enter people's dreams and steal their secrets from their subconscious. His skill has made him a hot commodity in the world of corporate espionage but has also cost him everything he loves. Cobb gets a chance at redemption when he is offered a seemingly impossible task: Plant an idea in someone's mind. If he succeeds, it will be the perfect crime, but a dangerous enemy anticipates Cobb's every move"
+      synopsis:"Dom Cobb (Leonardo DiCaprio) is a thief with the rare ability to enter people's dreams and steal their secrets from their subconscious. His skill has made him a hot commodity in the world of corporate espionage but has also cost him everything he loves. Cobb gets a chance at redemption when he is offered a seemingly impossible task: Plant an idea in someone's mind. If he succeeds, it will be the perfect crime, but a dangerous enemy anticipates Cobb's every move",
+      trailer: "https://www.youtube.com/embed/8hP9D6kZseM"
     },
 
     {
@@ -37,7 +41,8 @@ function App() {
       rating: "7.6",
       awards: "11 wins and 24 nominations",
       genre: "2009 ‧ Action/Sci-fi",
-      synopsis:"In an alternate 1985 America, costumed superheroes are part of everyday life. When one of his former comrades is murdered, masked vigilante Rorschach (Jackie Earle Haley) uncovers a plot to kill and discredit all past and present superheroes. As he reconnects with his retired associates, only one of which has true powers, Rorschach glimpses a far-reaching conspiracy involving their shared past and catastrophic consequences for the world's future."
+      synopsis:"In an alternate 1985 America, costumed superheroes are part of everyday life. When one of his former comrades is murdered, masked vigilante Rorschach (Jackie Earle Haley) uncovers a plot to kill and discredit all past and present superheroes. As he reconnects with his retired associates, only one of which has true powers, Rorschach glimpses a far-reaching conspiracy involving their shared past and catastrophic consequences for the world's future.",
+      trailer: "https://www.youtube.com/embed/D7qj1VGlu5s"
     },
 
     { name: "PREDESTINATION",
@@ -45,7 +50,8 @@ function App() {
       rating: "7.5",
       awards: "12 wins and 19 nominations",
       genre: "2014 ‧ Sci-fi/Action",
-      synopsis:"As his last assignment, a temporal agent is tasked to travel back in time and prevent a bomb attack in New York in 1975. The hunt, however, turns out to be beyond the bounds of possibility."
+      synopsis:"As his last assignment, a temporal agent is tasked to travel back in time and prevent a bomb attack in New York in 1975. The hunt, however, turns out to be beyond the bounds of possibility.",
+      trailer: "https://www.youtube.com/embed/xxG-YfedrfU"
     },
 
     {
@@ -54,7 +60,8 @@ function App() {
       rating: "7.0",
       awards: "7 wins and 46 nominations",
       genre: "2013 ‧ Action/Adventure",
-      synopsis:"With the imminent destruction of Krypton, their home planet, Jor-El (Russell Crowe) and his wife seek to preserve their race by sending their infant son to Earth. The child's spacecraft lands at the farm of Jonathan (Kevin Costner) and Martha (Diane Lane) Kent, who name him Clark and raise him as their own son. Though his extraordinary abilities have led to the adult Clark (Henry Cavill) living on the fringe of society, he finds he must become a hero to save those he loves from a dire threat."
+      synopsis:"With the imminent destruction of Krypton, their home planet, Jor-El (Russell Crowe) and his wife seek to preserve their race by sending their infant son to Earth. The child's spacecraft lands at the farm of Jonathan (Kevin Costner) and Martha (Diane Lane) Kent, who name him Clark and raise him as their own son. Though his extraordinary abilities have led to the adult Clark (Henry Cavill) living on the fringe of society, he finds he must become a hero to save those he loves from a dire threat.",
+      trailer: "https://www.youtube.com/embed/wArmHSPIvlQ"
     },
 
     {
@@ -62,7 +69,8 @@ function App() {
       rating: "6.4",
       awards: "14 wins and 33 nominations",
       genre: "2016 ‧ Action/Adventure",
-      synopsis:"It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel"
+      synopsis:"It's been nearly two years since Superman's (Henry Cavill) colossal battle with Zod (Michael Shannon) devastated the city of Metropolis. The loss of life and collateral damage left many feeling angry and helpless, including crime-fighting billionaire Bruce Wayne (Ben Affleck). Convinced that Superman is now a threat to humanity, Batman embarks on a personal vendetta to end his reign on Earth, while the conniving Lex Luthor (Jesse Eisenberg) launches his own crusade against the Man of Steel",
+      trailer: "https://www.youtube.com/embed/eX_iASz1Si8"
     }
   ]
   const [films, setFilms] = useState(MyMovieList);
@@ -71,8 +79,8 @@ function App() {
       <div>
       <ul>
         <li>
-          <Link to="/">Welcome Page</Link>
-        </li>
+          <Link to="/welcome">Welcome Page</Link>
+        </li>        
         <li>
           <Link to="/movies">Movies</Link>
         </li>
@@ -87,6 +95,8 @@ function App() {
      
     <Switch>
         <Route exact path="/">
+        </Route>
+        <Route exact path="/welcome">
           <WelcomePage />
         </Route>
         <Route path="/colors">
@@ -95,7 +105,7 @@ function App() {
         <Route path="/addmovie">
           <AddMovies films={films} setFilms={setFilms} />
         </Route>
-        <Route path="/movies">
+        <Route exact path="/movies">
         <div>
 
      
@@ -116,14 +126,20 @@ function App() {
                   setFilms(deleteMovie)
                 }}>        <DeleteIcon />
                 </IconButton>
-              } />
+              } id={index} />
             ))}
+              
+
 
         </div>        
+        </Route>
+        <Route path="/movies/:id">
+        <AboutMovie AllMovies={films} />
         </Route>
         <Route exact path="**">
             <Error />
           </Route>
+          
         </Switch>
         </div>
   );
