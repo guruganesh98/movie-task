@@ -9,11 +9,15 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Error from "./Error"
 import AboutMovie from "./AboutMovie"
+import EditMovie from "./EditMovie"
+import EditIcon from '@mui/icons-material/Edit';
+import {useHistory} from "react-router-dom"
 
 
 
 function App() {
 
+  const history = useHistory();
   const MyMovieList =[
     {
       name: "DARK KNIGHT",
@@ -126,16 +130,24 @@ function App() {
                   setFilms(deleteMovie)
                 }}>        <DeleteIcon />
                 </IconButton>
-              } id={index} />
+              }
+              editButton={
+                <EditIcon 
+                onClick={()=> history.push(`/movies/edit/${index}`)} />
+              }
+              id={index} />
             ))}
               
 
 
         </div>        
         </Route>
-        <Route path="/movies/:id">
+        <Route exact path="/movies/:id">
         <AboutMovie AllMovies={films} />
         </Route>
+        <Route  path="/movies/edit/:id">
+          <EditMovie films={films} setFilms={setFilms}/>          
+          </Route>
         <Route exact path="**">
             <Error />
           </Route>

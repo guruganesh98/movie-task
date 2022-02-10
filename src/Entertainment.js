@@ -11,7 +11,7 @@ import {useHistory} from "react-router-dom"
 
 
 
-export function Entertainment({ movie, poster, imdb, theme, summary, success, deleteButton, id}) {
+export function Entertainment({ movie, poster, imdb, theme, summary, success, deleteButton, id, editButton}) {
 
   const styles = { color: imdb >= 7.5 ? "green" : "red" };
   const [toggle, setToggle] = useState(false);
@@ -34,9 +34,12 @@ export function Entertainment({ movie, poster, imdb, theme, summary, success, de
 
           </div>
           <p className="awards">{success}</p>
-          <div className="buttons">
+          <div className="expand">
           <Button onClick={()=>setToggle(!toggle)} variant="contained"> {toggle ? <ExpandLessIcon/> : <ExpandMoreIcon/>}</Button>
+          </div>
+          <div className="buttons">
           <Counter />
+          {editButton}
           {deleteButton}</div>
           {toggle ? <p className="movieSummary"><i>{summary}</i></p> : null}
         </div>

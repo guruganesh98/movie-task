@@ -1,21 +1,23 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import {useState} from "react";
+import {useState} from "react"
+import { useParams } from "react-router-dom"
 import {useHistory} from "react-router-dom"
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 
 
+const EditMovie=({films, setFilms})=>{
 
-function AddMovies({films, setFilms}){
-
-  const history= useHistory();
-  const [name, setName]= useState([]);
-  const [url, setUrl]= useState([]);
-  const [rating, setRating]= useState([]);
-  const [awards, setAwards]= useState([]);
-  const [genre, setGenre]= useState([]);
-  const [synopsis, setSynopsis]= useState([]);
+    const {id}= useParams();
+    const edit = films[id];
+    const history= useHistory();
+  const [name, setName]= useState(edit.name);
+  const [url, setUrl]= useState(edit.url);
+  const [rating, setRating]= useState(edit.rating);
+  const [awards, setAwards]= useState(edit.awards);
+  const [genre, setGenre]= useState(edit.genre);
+  const [synopsis, setSynopsis]= useState(edit.synopsis);
   const [trailer, setTrailer]= useState([]);
     return(
      <div>
@@ -44,14 +46,15 @@ function AddMovies({films, setFilms}){
         label="Synopsis"
         focused onChange={(event)=> setSynopsis(event.target.value)}
         />
-         <TextField
+        <TextField
         label="Trailer"
         focused  onChange={(event)=> setTrailer(event.target.value)}
         />
         </div>
         <div className="addButton">
-        <Button variant="contained" color="success" onClick={()=>{
-          const addNewMovie={
+        <Button
+        onClick={() => {
+          const updatedMovie = {
             name: name,
             url: url,
             rating: rating,
@@ -59,12 +62,22 @@ function AddMovies({films, setFilms}){
             genre: genre,
             synopsis: synopsis,
             trailer: trailer
-          };    setFilms([...films, addNewMovie]);
+          };
+          const copyMovieList = [...films];
+          copyMovieList[id] = updatedMovie;
+          setFilms(copyMovieList);
           history.push("/movies");
-        }}>Add Movie</Button>
+        }}
+        variant="contained"
+        color="success"
+      >
+        Save
+      </Button>
         </div>
         </div> 
     )
 }
 
-export default AddMovies
+
+
+export default EditMovie

@@ -69,8 +69,12 @@ padding: 15px;
   height: 25px;
 }
 
+.expand{
+  margin-top: 2rem;
+}
+
 .addButton{
-  margin: 0 0 10rem 20rem;
+  margin: 9rem 0 10rem 20rem;
 }
 
 .movieDetails{
@@ -79,7 +83,7 @@ padding: 15px;
   flex-direction: column;
   width: 300px;
   height: 300px;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .greetings{
@@ -99,9 +103,17 @@ padding: 15px;
   left: 42.9rem;
 }
 
+.votes{
+  display: flex;
+  justify-content: space-between;
+  width: 5rem;
+  margin-right: 7rem;
+}
+
 .buttons{
   display: flex;
-  margin-top: 1rem;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 ul{
@@ -143,9 +155,14 @@ ul{
 
 .movieTitle{
   font-family: 'Rowdies', cursive;
+  margin-right: 0.5rem;
 }
 
 .oneMovie{
   display: flex;
   align-items: center;
+}
+
+.backButton{
+  margin: 5rem 0 0 50%;
 }
